@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hunt Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="/Users/abby/Documents/hunt/appjs/app.min.css">
+    <style>
+      /* put your styles here */
+    </style>
+  </head>
+
+  <body>
+    <!-- page 1 --> 
+    <div class="app-page" data-page="home">
+        <div class="app-topbar">
+            <div class="app-title">Single Page Display</div>
+        </div>
+        <div class="app-content">
+          <br />
+          <input id="btnAddress" type="search" class="app-input" placeholder="Enter address here..."> <!-- will have search icon -->
+          <div class="app-section">
+            <div id="btnSearch" class="app-button blue">Search</div>
+          </div>
+          <br />
+          <div style="text-align:center;"><p><strong>OR</strong></p></div>
+          <br />
+          <div class="app-section">
+            <div id="btnLocation" class="app-button green">Use Location</div>
+          </div>
+        </div>
+    </div>
+
+    <script src="/Users/abby/Documents/hunt/appjs/app.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+    <script type='text/javascript'>
+      App.controller('home', function (page) {
+        // this runs whenever a 'home' page is loaded
+        // 'page' is the HTML app-page element
+          $(page)
+              .find('#btnSearch')
+                  .on('click', function () {
+                    var address = $('#btnAddress').val();
+                    if (address) {
+                      alert(address);
+                    }
+                  });
+          $(page)
+              .find('#btnLocation')
+                  .on('click', function () {
+                    navigator.geolocation.getCurrentPosition(function(location) {
+                      alert('Lat: ' + location.coords.latitude + ' ' + 
+                            'Long: ' + location.coords.longitude);
+                    });
+                  });
+      });
+    </script>
+    <script>
+      /* put your javascript here */
+      try {
+        App.restore(); // it loads/restores the app
+      } catch (err) {
+        App.load('home'); // in case of error it loads the default page
+      }
+    </script>
+  </body>
+</html>

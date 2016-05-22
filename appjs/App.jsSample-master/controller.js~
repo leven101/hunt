@@ -1,0 +1,84 @@
+var firebaseRef = new Firebase('https://burning-fire-1723.firebaseio.com');
+var wishRef = new Firebase('https://burning-fire-1723.firebaseio.com/WishList');
+var auth = new FirebaseSimpleLogin(firebaseRef, function (error, user) {
+    if (!error) {
+        if (user) {
+	     App.load('LoginHome',user);
+        }
+    }
+});
+ App.controller('SignIn', function (page) {
+     // put stuff here
+     
+     $(page)
+         .find('.app-button')
+         .on('click', function () {
+             var email = $('#btnUsername').val();
+             var password = $('#btnPass').val();
+             auth.login('password', {
+                 email: email,
+                 password: password
+             });
+         });
+ });
+
+
+
+ App.controller('SignUp', function (page) {
+     // put stuff here
+     
+     $(page)
+         .find('.app-button')
+         .on('click', function () {
+             var email = $('#btnEmail').val();
+             var password = $('#btnPassword').val();
+             auth.createUser(email, password, function (error, user) {
+                 if (!error) {
+                     App.load('SignIn');
+                 }
+             });
+
+         });
+
+ });
+
+
+App.controller('WishList', function (page,email) {
+     // put stuff here
+     
+     $(page)
+         {
+		alert('hi');
+}
+
+ });
+
+App.controller('LoginHome',function(page,user){
+	console.log('User in ',user.email);
+	$(page)
+		.find('.user').text(user.email);
+	$(page)
+		.find('#btnLogout')
+		.on('click',function(){
+			auth.logout();
+			App.load('SignIn');
+		});
+	$(page)
+	  .find('#btnAdd')
+         .on('click', function () {
+		var wish = $('#txtWish').val();
+		wishRef.push({'user_id': user.email, 'text': wish});
+	});
+
+	$(page)
+	  .find('#btnShowList')
+         .on('click', function () {
+		App.load('WishList',user.email);
+	});
+});
+
+ try {
+     App.restore();
+ } catch (err) {
+     App.load('home');
+ }

@@ -1,0 +1,13 @@
+
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyA9gXNdPWd06x609xAv1Ciymgz8Gqs_nJ8",
+    authDomain: "hunt-d0fb5.firebaseapp.com",
+    databaseURL: "https://hunt-d0fb5.firebaseio.com",
+    storageBucket: "hunt-d0fb5.appspot.com",
+  };
+  firebase.initializeApp(config);
+</script>
+    

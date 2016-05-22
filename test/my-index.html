@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="/Users/abby/Documents/hunt/appjs/app.min.css">
+    <style>
+      /* put your styles here */
+    </style>
+  </head>
+
+  <body>
+    <!-- page 1 --> 
+    <div class="app-page" data-page="home">
+        <div class="app-topbar">
+            <div class="app-title">Simple Web App</div>
+        </div>
+        <div class="app-content">
+            <br />
+            <div class="app-button green" data-target="SignIn">Sign In</div>
+            <br />
+            <div class="app-button blue" data-target="SignUp">Sign Up</div>
+        </div>
+    </div>
+    <!-- page 2 --> 
+    <div class="app-page" data-page="SignIn">
+        <div class="app-topbar">
+            <div class="app-button left blue" data-target="home">back</div>
+        </div>
+        <br />
+        <div class="app-content">
+            <input id="btnUsername" class="app-input" placeholder="Username">
+            <input id="btnPass" class="app-input" placeholder="Password" type="password">
+            <div id="btnSignIn" class="app-button green">Sign In</div>
+        </div>
+    </div>
+    <!-- page 3 --> 
+    <div class="app-page" data-page="SignUp">
+        <div class="app-topbar">
+            <div class="app-button left blue" data-target="home">back</div>
+        </div>
+        <br />
+        <div class="app-content">
+            <input id="btnEmail" class="app-input" placeholder="Email">
+            <input id="btnPassword" class="app-input" placeholder="Password" type="password">
+            <div id="btnSignUp" class="app-button green ">Sign Up</div>
+        </div>
+    </div>
+
+    <script type='text/javascript' src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="/Users/abby/Documents/hunt/appjs/app.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
+    <script src="/Users/abby/Documents/hunt/test/controller.js"></script> 
+  </body>
+</html>
