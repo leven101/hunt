@@ -10,23 +10,7 @@ function handleResponse(req) {
     var resp = req.responseText;
     alert(resp); 
 }
-function testREST() {
-  var req = createRequest(); // defined above
-  // Create the callback:
-  req.onreadystatechange = function() {
-    if (req.readyState != 4) return; // Not there yet
-    if (req.status != 200) {
-      // Handle request failure here...
-      alert(req.status);
-      return;
-    }
-    // Request successful, read the response
-    handleResponse(req)
-  }
-  req.open("GET", "https://83zvb7xqq2.execute-api.us-east-1.amazonaws.com/prod/venues", true);
-  req.send();
-} 
-function latLongREST(lat, lon) {
+function postRequest(lat, lon) {
   var req = createRequest(); // defined above
   // Create the callback:
   req.onreadystatechange = function() {
@@ -45,6 +29,12 @@ function latLongREST(lat, lon) {
   var jsonString = '{"lat":"' + lat + '","long":"' + lon + '"}'; 
   req.send(jsonString);
 } 
+function buildLatLonJson(lat, lon) {
+  var obj =  new Object();
+  obj.lat = lat;
+  obj.lon = lon;
+  return JSON.stringify(obj);
+}
 App.controller('home', function (page) {
   // this runs whenever a 'home' page is loaded
   // 'page' is the HTML app-page element
@@ -62,12 +52,10 @@ App.controller('home', function (page) {
               navigator.geolocation.getCurrentPosition(function(location) {
                 var lat =  location.coords.latitude;
                 var lon = location.coords.longitude;
-                latLongREST(lat, lon);
+                console.log(buildLatLonJson(lat, lon));
+                postRequest(lat, lon);
               });
             });
-    $(page)
-        .find('#btnTest')
-            .on('click', testREST); 
 });
 /* put your javascript here */
 try {
