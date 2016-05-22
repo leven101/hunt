@@ -27,40 +27,15 @@
           <div class="app-section">
             <div id="btnLocation" class="app-button green">Use Location</div>
           </div>
+          <br />
+          <div class="app-section">
+            <div id="btnTest" class="app-button yellow">Test "works"</div>
+          </div>
         </div>
     </div>
 
     <script src="http://cdn.kik.com/app/2.0.1/app.min.js"></script>
     <script src="http://code.jquery.com/jquery-2.2.3.js"></script>
-    <script type='text/javascript'>
-      App.controller('home', function (page) {
-        // this runs whenever a 'home' page is loaded
-        // 'page' is the HTML app-page element
-          $(page)
-              .find('#btnSearch')
-                  .on('click', function () {
-                    var address = $('#btnAddress').val();
-                    if (address) {
-                      alert(address);
-                    }
-                  });
-          $(page)
-              .find('#btnLocation')
-                  .on('click', function () {
-                    navigator.geolocation.getCurrentPosition(function(location) {
-                      alert('Lat: ' + location.coords.latitude + ' ' + 
-                            'Long: ' + location.coords.longitude);
-                    });
-                  });
-      });
-    </script>
-    <script>
-      /* put your javascript here */
-      try {
-        App.restore(); // it loads/restores the app
-      } catch (err) {
-        App.load('home'); // in case of error it loads the default page
-      }
-    </script>
+    <script type='text/javascript' src="singlePage.js"></script>
   </body>
 </html>
